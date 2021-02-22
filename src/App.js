@@ -1,9 +1,12 @@
-import './App.css';
+import React from 'react'
+import './App.css'
+import Button from './components/Button'
 
-function App() {
+export default function App() {
   return (
-    
+    <>
+      <Button text="Reset Score" onClick={() => console.log('Reset Score')} />
+      <Button text="Reset all" onClick={() => console.log('Reset All')} />
+    </>
   )
 }
-
-export default App;
