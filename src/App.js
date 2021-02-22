@@ -1,10 +1,23 @@
+<<<<<<< HEAD
+import React from 'react'
+import './App.css'
+import Button from './components/Button'
+=======
 import './App.css'
 <<<<<<< HEAD
 import Player from './components/Player'
+>>>>>>> main
 
-function App() {
+export default function App() {
   return (
     <>
+<<<<<<< HEAD
+      <Button text="Reset Score" onClick={() => console.log('Reset Score')} />
+      <Button text="Reset all" onClick={() => console.log('Reset All')} />
+    </>
+  )
+}
+=======
       <Player
         name="Jone Doe"
         score="20"
@@ -29,3 +42,4 @@ function App() {
 }
 
 export default App
+>>>>>>> main
