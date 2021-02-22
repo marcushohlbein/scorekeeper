@@ -1,4 +1,5 @@
 import './App.css'
+<<<<<<< HEAD
 import Player from './components/Player'
 
 function App() {
@@ -17,6 +18,13 @@ function App() {
         onPlus={() => console.log('Plus')}
       />
     </>
+=======
+import PlayerForm from './components/PlayerForm'
+
+function App() {
+  return (
+    <PlayerForm label="Add Player:" onAddPlayer={name => console.log(name)} />
+>>>>>>> main
   )
 }
 
