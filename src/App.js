@@ -1,23 +1,13 @@
-<<<<<<< HEAD
 import React from 'react'
 import './App.css'
-import Button from './components/Button'
-=======
-import './App.css'
-<<<<<<< HEAD
+import PlayerForm from './components/PlayerForm'
 import Player from './components/Player'
->>>>>>> main
+import Button from './components/Button'
 
 export default function App() {
   return (
-    <>
-<<<<<<< HEAD
-      <Button text="Reset Score" onClick={() => console.log('Reset Score')} />
-      <Button text="Reset all" onClick={() => console.log('Reset All')} />
-    </>
-  )
-}
-=======
+    <main className="App">
+      <PlayerForm label="Add Player:" onAddPlayer={name => console.log(name)} />
       <Player
         name="Jone Doe"
         score="20"
@@ -30,16 +20,8 @@ export default function App() {
         onMinus={() => console.log('Minus')}
         onPlus={() => console.log('Plus')}
       />
-    </>
-=======
-import PlayerForm from './components/PlayerForm'
-
-function App() {
-  return (
-    <PlayerForm label="Add Player:" onAddPlayer={name => console.log(name)} />
->>>>>>> main
+      <Button text="Reset Score" onClick={() => console.log('Reset Score')} />
+      <Button text="Reset all" onClick={() => console.log('Reset All')} />
+    </main>
   )
 }
-
-export default App
->>>>>>> main
