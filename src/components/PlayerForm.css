@@ -1,2 +1,4 @@
-.Playerform {
+.PlayerForm {
+  display: grid;
+  grid-template-rows: 1fr;
 }
