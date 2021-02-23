@@ -3,6 +3,7 @@ import './App.css'
 import Button from './Button'
 import GameForm from './GameForm'
 import Header from './Header'
+import HistoryEntry from './HistoryEntry'
 import Navigation from './Navigation'
 import Player from './Player'
 import PlayerForm from './PlayerForm'
@@ -29,6 +30,13 @@ function App() {
         onNavigate={index => console.log('onNavigate', index)}
       />
       <Header text="Carcassonne" />
+      <HistoryEntry
+        nameOfGame="Carcassonne"
+        players={[
+          { name: 'John Doe', score: 10 },
+          { name: 'Jane Doe', score: 20 },
+        ]}
+      />
     </div>
   )
 
