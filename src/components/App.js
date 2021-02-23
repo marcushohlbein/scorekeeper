@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Button from './Button'
 import GameForm from './GameForm'
+import Navigation from './Navigation'
 import Player from './Player'
 import PlayerForm from './PlayerForm'
 
@@ -22,6 +23,10 @@ function App() {
       <Button text="Reset scores" onClick={resetScore}></Button>
       <Button text="Reset all" onClick={resetAll}></Button>
       <GameForm onCreateGame={() => console.log('onCreateGame')} />
+      <Navigation
+        activeIndex={0}
+        onNavigate={index => console.log('onNavigate', index)}
+      />
     </div>
   )
 

@@ -1,4 +1,10 @@
 .Button {
   padding: 5px;
   background: #bbb;
+  width: 100%;
+}
+
+.Button--active {
+  background: #333;
+  color: white;
 }
