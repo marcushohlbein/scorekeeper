@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './App.css'
-import PlayerForm from './components/PlayerForm'
-import Player from './components/Player'
-import Button from './components/Button'
+import PlayerForm from './PlayerForm'
+import Player from './Player'
+import Button from './Button'
 
 export default function App() {
   const [players, setPlayers] = useState([])

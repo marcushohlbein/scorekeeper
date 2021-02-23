@@ -1,11 +1,12 @@
 import React from 'react'
 import './PlayerForm.css'
 
-function PlayerForm({ label, onAddPlayer }) {
+function PlayerForm({ onAddPlayer }) {
   return (
     <form className="PlayerForm" onSubmit={handleSubmit}>
       <label>
-        {label}
+        Add player:
+        <br />
         <input name="player" placeholder="Player name" />
       </label>
     </form>
