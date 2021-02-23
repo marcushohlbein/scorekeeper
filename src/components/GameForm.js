@@ -1,17 +1,15 @@
 import React from 'react'
+import Input from './Input'
 import './GameForm.css'
 
 function GameForm({ onCreateGame }) {
   return (
     <form className="GameForm" onSubmit={handleSubmit}>
-      <label>
-        Name of game:
-        <input name="nameOfGame" placeholder="e.g. Carcassonne " />
-      </label>
-      <label>
-        Player names:
-        <input name="playerNames" placeholder="e.g. Jone Doe, Jane Doe" />
-      </label>
+      <Input labelText="Name of game:" placeholderText="e.g. Carcassonne" />
+      <Input
+        labelText="Player names:"
+        placeholderText="e.g. Jone Doe, Jane Doe"
+      />
     </form>
   )
 
