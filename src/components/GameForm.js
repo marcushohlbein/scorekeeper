@@ -6,8 +6,16 @@ import './GameForm.css'
 export default function GameForm({ onCreateGame }) {
   return (
     <form className="GameForm" onSubmit={handleSubmit}>
-      <Input labelText="Name of game" placeholder="e.g. Carcassonne" />
-      <Input labelText="Player names" placeholder="e.g. John Doe, Jane Doe" />
+      <Input
+        name="nameOfGame"
+        labelText="Name of game"
+        placeholder="e.g. Carcassonne"
+      />
+      <Input
+        name="playerNames"
+        labelText="Player names"
+        placeholder="e.g. John Doe, Jane Doe"
+      />
       <Button text="Create game" />
     </form>
   )
@@ -15,8 +23,13 @@ export default function GameForm({ onCreateGame }) {
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
-    // get data from input
+    const { nameOfGame, playerNames } = form.elements
 
+    onCreateGame({
+      nameOfGame: nameOfGame.value,
+      playerNames: playerNames.value.split(',').map(name => name.trim()),
+    })
     form.reset()
+    nameOfGame.focus()
   }
 }

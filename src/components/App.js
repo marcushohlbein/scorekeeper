@@ -24,7 +24,7 @@ function App() {
       ))}
       <Button text="Reset scores" onClick={resetScore}></Button>
       <Button text="Reset all" onClick={resetAll}></Button>
-      <GameForm onCreateGame={() => console.log('onCreateGame')} />
+      <GameForm onCreateGame={data => console.log('onCreateGame', data)} />
       <Navigation
         activeIndex={0}
         onNavigate={index => console.log('onNavigate', index)}
