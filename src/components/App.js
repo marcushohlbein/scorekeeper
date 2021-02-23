@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './App.css'
+import styled from 'styled-components/macro'
 import Button from './Button'
-import Player from './Player'
+import Player from './PlayerItem'
 import PlayerForm from './PlayerForm'
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <Appgrid>
       <PlayerForm onAddPlayer={handleAddPlayer} />
       {players.map((player, index) => (
         <Player
@@ -49,10 +49,21 @@ function App() {
         />
       ))}
 
-      <Button text="Reset scores" onClick={resetScore}></Button>
-      <Button text="Reset all" onClick={resetAll}></Button>
-    </div>
+      <Button onClick={resetScore}>Reset scores</Button>
+      <ResetButton onClick={resetAll}>Reset all</ResetButton>
+    </Appgrid>
   )
 }
+
+const Appgrid = styled.main`
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+`
+
+const ResetButton = styled(Button)`
+  background-color: salmon;
+  color: white;
+`
 
 export default App
