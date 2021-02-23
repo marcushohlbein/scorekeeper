@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Button from './Button'
 import GameForm from './GameForm'
+import Header from './Header'
 import Navigation from './Navigation'
 import Player from './Player'
 import PlayerForm from './PlayerForm'
@@ -27,6 +28,7 @@ function App() {
         activeIndex={0}
         onNavigate={index => console.log('onNavigate', index)}
       />
+      <Header text="Carcassonne" />
     </div>
   )
 
