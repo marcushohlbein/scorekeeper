@@ -39,21 +39,18 @@ export default function App() {
 
   return (
     <main className="App">
-      <PlayerForm label="Add Player:" onAddPlayer={name => console.log(name)} />
-      <Player
-        name="Jone Doe"
-        score="20"
-        onMinus={() => console.log('Minus')}
-        onPlus={() => console.log('Plus')}
-      />
-      <Player
-        name="Jane Doe"
-        score="30"
-        onMinus={() => console.log('Minus')}
-        onPlus={() => console.log('Plus')}
-      />
-      <Button text="Reset Score" onClick={() => console.log('Reset Score')} />
-      <Button text="Reset all" onClick={() => console.log('Reset All')} />
+      <PlayerForm onAddPlayer={handleAddPlayer} />
+      {players.map((player, index) => (
+        <Player
+          name={player.name}
+          score={player.score}
+          onPlus={() => handlePlus(index)}
+          onMinus={() => handleMinus(index)}
+        />
+      ))}
+
+      <Button text="Reset scores" onClick={resetScore}></Button>
+      <Button text="Reset all" onClick={resetAll}></Button>
     </main>
   )
 }
