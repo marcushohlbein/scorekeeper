@@ -93,8 +93,6 @@ const Appgrid = styled.main`
   display: grid;
   gap: 20px;
   padding: 20px;
-  position: relative;
-  height: 100vh;
 `
 const HistoryWrapper = styled.div`
   display: grid;
