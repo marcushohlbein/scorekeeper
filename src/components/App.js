@@ -86,9 +86,4 @@ const Appgrid = styled.main`
   padding: 20px;
 `
 
-const ResetButton = styled(Button)`
-  background-color: salmon;
-  color: white;
-`
-
 export default App
