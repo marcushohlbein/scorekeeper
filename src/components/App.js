@@ -1,15 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
 import Button from './Button'
-<<<<<<< HEAD
-import GameForm from './GameForm'
-import Header from './Header'
-import HistoryEntry from './HistoryEntry'
-import Navigation from './Navigation'
-import Player from './Player'
-=======
 import Player from './PlayerItem'
->>>>>>> main
 import PlayerForm from './PlayerForm'
 
 function App() {
