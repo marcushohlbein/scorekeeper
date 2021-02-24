@@ -1,11 +1,9 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
-import Button from './Button'
-import Player from './PlayerItem'
-import GameForm from './GameForm'
 import Navigation from './Navigation'
-import Header from './Header'
-import HistoryEntry from './HistoryEntry'
+import Game from '../screens/Game'
+import History from '../screens/History'
+import CreateGame from '../screens/CreateGame'
 import { v4 as uuidv4 } from 'uuid'
 
 function App() {
@@ -16,36 +14,20 @@ function App() {
 
   return (
     <Appgrid>
-      {currentPage === 'play' && (
-        <div>
-          <GameForm onCreateGame={createGame} />
-        </div>
-      )}
+      {currentPage === 'play' && <CreateGame createGame={createGame} />}
 
       {currentPage === 'game' && (
-        <div>
-          <Header>{nameOfGame}</Header>
-          {players.map(({ name, score }, index) => (
-            <Player
-              key={name}
-              name={name}
-              score={score}
-              onPlus={() => handlePlus(index)}
-              onMinus={() => handleMinus(index)}
-            />
-          ))}
-          <Button onClick={resetScores}>Reset scores</Button>
-          <Button onClick={endGame}>End game</Button>
-        </div>
+        <Game
+          players={players}
+          nameOfGame={nameOfGame}
+          handlePlus={handlePlus}
+          handleMinus={handleMinus}
+          resetScores={resetScores}
+          endGame={endGame}
+        />
       )}
 
-      {currentPage === 'history' && (
-        <HistoryWrapper>
-          {history.map(({ nameOfGame, players, id }) => (
-            <HistoryEntry key={id} nameOfGame={nameOfGame} players={players} />
-          ))}
-        </HistoryWrapper>
-      )}
+      {currentPage === 'history' && <History history={history} />}
 
       {(currentPage === 'play' || currentPage === 'history') && (
         <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
@@ -94,8 +76,5 @@ const Appgrid = styled.main`
   gap: 20px;
   padding: 20px;
 `
-const HistoryWrapper = styled.div`
-  display: grid;
-  gap: 25px;
-`
+
 export default App
