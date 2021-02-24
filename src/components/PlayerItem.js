@@ -3,18 +3,18 @@ import Button from './Button'
 
 export default function PlayerItem({ name, score, onMinus, onPlus }) {
   return (
-    <Player>
+    <PlayerWrapper>
       {name}
-      <PlayerScore score={Math.min(140, Math.max(0, score * 7))}>
+      <PlayerScore score={Math.min(120, Math.max(0, score * 7))}>
         <ScoreButton onClick={onMinus}>-</ScoreButton>
         <span>{score}</span>
         <ScoreButton onClick={onPlus}>+</ScoreButton>
       </PlayerScore>
-    </Player>
+    </PlayerWrapper>
   )
 }
 
-const Player = styled.section`
+const PlayerWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
