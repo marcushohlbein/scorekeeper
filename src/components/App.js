@@ -1,11 +1,15 @@
 import { useState } from 'react'
-import './App.css'
+import styled from 'styled-components/macro'
 import Button from './Button'
+<<<<<<< HEAD
 import GameForm from './GameForm'
 import Header from './Header'
 import HistoryEntry from './HistoryEntry'
 import Navigation from './Navigation'
 import Player from './Player'
+=======
+import Player from './PlayerItem'
+>>>>>>> main
 import PlayerForm from './PlayerForm'
 
 function App() {
@@ -69,6 +73,37 @@ function App() {
       ...players.slice(index + 1),
     ])
   }
+<<<<<<< HEAD
+=======
+
+  return (
+    <Appgrid>
+      <PlayerForm onAddPlayer={handleAddPlayer} />
+      {players.map((player, index) => (
+        <Player
+          name={player.name}
+          score={player.score}
+          onPlus={() => handlePlus(index)}
+          onMinus={() => handleMinus(index)}
+        />
+      ))}
+
+      <Button onClick={resetScore}>Reset scores</Button>
+      <ResetButton onClick={resetAll}>Reset all</ResetButton>
+    </Appgrid>
+  )
+>>>>>>> main
 }
+
+const Appgrid = styled.main`
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+`
+
+const ResetButton = styled(Button)`
+  background-color: salmon;
+  color: white;
+`
 
 export default App
