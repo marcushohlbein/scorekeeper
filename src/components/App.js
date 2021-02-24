@@ -3,12 +3,16 @@ import styled from 'styled-components/macro'
 import Button from './Button'
 import Player from './PlayerItem'
 import PlayerForm from './PlayerForm'
+import GameForm from './GameForm'
+import Navigation from './Navigation'
+import Header from './Header'
+import HistoryEntry from './HistoryEntry'
 
 function App() {
   const [players, setPlayers] = useState([])
 
   return (
-    <div className="App">
+    <Appgrid>
       <PlayerForm onAddPlayer={handleAddPlayer} />
       {players.map((player, index) => (
         <Player
@@ -18,8 +22,10 @@ function App() {
           onMinus={() => handleMinus(index)}
         />
       ))}
-      <Button text="Reset scores" onClick={resetScore}></Button>
-      <Button text="Reset all" onClick={resetAll}></Button>
+
+      <Button onClick={resetScore}>Reset scores</Button>
+      <ResetButton onClick={resetAll}>Reset all</ResetButton>
+
       <GameForm onCreateGame={data => console.log('onCreateGame', data)} />
       <Navigation
         activeIndex={0}
@@ -33,7 +39,7 @@ function App() {
           { name: 'Jane Doe', score: 20 },
         ]}
       />
-    </div>
+    </Appgrid>
   )
 
   function handleAddPlayer(name) {
@@ -65,26 +71,6 @@ function App() {
       ...players.slice(index + 1),
     ])
   }
-<<<<<<< HEAD
-=======
-
-  return (
-    <Appgrid>
-      <PlayerForm onAddPlayer={handleAddPlayer} />
-      {players.map((player, index) => (
-        <Player
-          name={player.name}
-          score={player.score}
-          onPlus={() => handlePlus(index)}
-          onMinus={() => handleMinus(index)}
-        />
-      ))}
-
-      <Button onClick={resetScore}>Reset scores</Button>
-      <ResetButton onClick={resetAll}>Reset all</ResetButton>
-    </Appgrid>
-  )
->>>>>>> main
 }
 
 const Appgrid = styled.main`

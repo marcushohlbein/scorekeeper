@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Input from './Input'
 
 export default function PlayerForm({ onAddPlayer }) {
   return (
@@ -7,7 +8,7 @@ export default function PlayerForm({ onAddPlayer }) {
       <label>
         Add player:
         <br />
-        <input name="player" placeholder="Player name" />
+        <Input name="player" placeholder="Player name" />
       </label>
     </Form>
   )
