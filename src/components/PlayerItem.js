@@ -1,13 +1,14 @@
 import styled from 'styled-components'
+import Button from './Button'
 
 export default function PlayerItem({ name, score, onMinus, onPlus }) {
   return (
     <Player>
       {name}
       <PlayerScore score={Math.min(140, Math.max(0, score * 7))}>
-        <button onClick={onMinus}>-</button>
+        <ScoreButton onClick={onMinus}>-</ScoreButton>
         <span>{score}</span>
-        <button onClick={onPlus}>+</button>
+        <ScoreButton onClick={onPlus}>+</ScoreButton>
       </PlayerScore>
     </Player>
   )
@@ -28,12 +29,9 @@ const PlayerScore = styled.div`
   span {
     color: ${props => 'hsl(' + props.score + ', 70%, 60%);'};
   }
+`
 
-  button {
-    border: none;
-    border-radius: 10px;
-    background: #bbb;
-    width: 35px;
-    height: 35px;
-  }
+const ScoreButton = styled(Button)`
+  width: 35px;
+  height: 35px;
 `
