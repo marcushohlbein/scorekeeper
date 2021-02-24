@@ -6,21 +6,25 @@ import GameForm from './GameForm'
 import Navigation from './Navigation'
 import Header from './Header'
 import HistoryEntry from './HistoryEntry'
+import { v4 as uuidv4 } from 'uuid'
 
 function App() {
   const [players, setPlayers] = useState([])
+  const [nameOfGame, setNameOfGame] = useState('')
+  const [history, setHistory] = useState([])
   const [currentPage, setCurrentPage] = useState('play')
 
   return (
     <Appgrid>
       {currentPage === 'play' && (
         <div>
-          <GameForm onCreateGame={data => console.log('onCreateGame', data)} />
+          <GameForm onCreateGame={createGame} />
         </div>
       )}
+
       {currentPage === 'game' && (
         <div>
-          <Header>Carcassonne</Header>
+          <Header>{nameOfGame}</Header>
           {players.map(({ name, score }, index) => (
             <Player
               key={name}
@@ -31,30 +35,35 @@ function App() {
             />
           ))}
           <Button onClick={resetScores}>Reset scores</Button>
-          <Button onClick={() => console.log('end game')}>End game</Button>
+          <Button onClick={endGame}>End game</Button>
         </div>
       )}
+
       {currentPage === 'history' && (
-        <HistoryEntry
-          nameOfGame="Carcassonne"
-          players={[
-            { name: 'John Doe', score: 10 },
-            { name: 'Jane Doe', score: 20 },
-          ]}
-        />
+        <HistoryWrapper>
+          {history.map(({ nameOfGame, players, id }) => (
+            <HistoryEntry key={id} nameOfGame={nameOfGame} players={players} />
+          ))}
+        </HistoryWrapper>
       )}
+
       {(currentPage === 'play' || currentPage === 'history') && (
         <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
       )}
     </Appgrid>
   )
 
-  function handleAddPlayer(name) {
-    setPlayers(oldPlayers => [...oldPlayers, { name, score: 0 }])
+  function createGame({ nameOfGame, playerNames }) {
+    setNameOfGame(nameOfGame)
+    setPlayers(playerNames.map(name => ({ name, score: 0 })))
+    setCurrentPage('game')
   }
 
-  function resetAll() {
+  function endGame() {
+    setHistory([{ id: uuidv4(), players, nameOfGame }, ...history])
     setPlayers([])
+    setNameOfGame([])
+    setCurrentPage('play')
   }
 
   function resetScores() {
@@ -84,6 +93,11 @@ const Appgrid = styled.main`
   display: grid;
   gap: 20px;
   padding: 20px;
+  position: relative;
+  height: 100vh;
 `
-
+const HistoryWrapper = styled.div`
+  display: grid;
+  gap: 25px;
+`
 export default App
