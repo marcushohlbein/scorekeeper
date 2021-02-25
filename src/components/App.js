@@ -1,21 +1,54 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
-import Button from './Button'
-import Player from './PlayerItem'
-import PlayerForm from './PlayerForm'
+import Navigation from './Navigation'
+import Game from '../screens/GamePage'
+import History from '../screens/HistoryPage'
+import CreateGame from '../screens/CreatePage'
+import { v4 as uuidv4 } from 'uuid'
 
 function App() {
   const [players, setPlayers] = useState([])
+  const [nameOfGame, setNameOfGame] = useState('')
+  const [history, setHistory] = useState([])
+  const [currentPage, setCurrentPage] = useState('play')
 
-  function handleAddPlayer(name) {
-    setPlayers(oldPlayers => [...oldPlayers, { name, score: 0 }])
+  return (
+    <Appgrid>
+      {currentPage === 'play' && <CreateGame onCreateGame={createGame} />}
+
+      {currentPage === 'game' && (
+        <Game
+          players={players}
+          nameOfGame={nameOfGame}
+          onPlus={handlePlus}
+          onMinus={handleMinus}
+          resetScores={resetScores}
+          endGame={endGame}
+        />
+      )}
+
+      {currentPage === 'history' && <History history={history} />}
+
+      {(currentPage === 'play' || currentPage === 'history') && (
+        <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
+      )}
+    </Appgrid>
+  )
+
+  function createGame({ nameOfGame, playerNames }) {
+    setNameOfGame(nameOfGame)
+    setPlayers(playerNames.map(name => ({ name, score: 0 })))
+    setCurrentPage('game')
   }
 
-  function resetAll() {
+  function endGame() {
+    setHistory([{ id: uuidv4(), players, nameOfGame }, ...history])
     setPlayers([])
+    setNameOfGame([])
+    setCurrentPage('play')
   }
 
-  function resetScore() {
+  function resetScores() {
     setPlayers(players.map(player => ({ ...player, score: 0 })))
   }
 
@@ -36,34 +69,12 @@ function App() {
       ...players.slice(index + 1),
     ])
   }
-
-  return (
-    <Appgrid>
-      <PlayerForm onAddPlayer={handleAddPlayer} />
-      {players.map((player, index) => (
-        <Player
-          name={player.name}
-          score={player.score}
-          onPlus={() => handlePlus(index)}
-          onMinus={() => handleMinus(index)}
-        />
-      ))}
-
-      <Button onClick={resetScore}>Reset scores</Button>
-      <ResetButton onClick={resetAll}>Reset all</ResetButton>
-    </Appgrid>
-  )
 }
 
 const Appgrid = styled.main`
   display: grid;
   gap: 20px;
   padding: 20px;
-`
-
-const ResetButton = styled(Button)`
-  background-color: salmon;
-  color: white;
 `
 
 export default App

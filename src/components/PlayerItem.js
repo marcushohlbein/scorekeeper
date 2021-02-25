@@ -5,7 +5,7 @@ export default function PlayerItem({ name, score, onMinus, onPlus }) {
   return (
     <PlayerWrapper>
       {name}
-      <PlayerScore score={Math.min(120, Math.max(0, score * 7))}>
+      <PlayerScore score={score !== 0 && Math.min(120, Math.max(0, score * 7))}>
         <ScoreButton onClick={onMinus}>-</ScoreButton>
         <span>{score}</span>
         <ScoreButton onClick={onPlus}>+</ScoreButton>
