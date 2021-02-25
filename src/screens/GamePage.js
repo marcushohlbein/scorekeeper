@@ -6,8 +6,8 @@ import Button from '../components/Button'
 export default function Game({
   nameOfGame,
   players,
-  handlePlus,
-  handleMinus,
+  onPlus,
+  onMinus,
   resetScores,
   endGame,
 }) {
@@ -19,8 +19,8 @@ export default function Game({
           key={name}
           name={name}
           score={score}
-          onPlus={() => handlePlus(index)}
-          onMinus={() => handleMinus(index)}
+          onPlus={() => onPlus(index)}
+          onMinus={() => onMinus(index)}
         />
       ))}
       <Button onClick={resetScores}>Reset scores</Button>

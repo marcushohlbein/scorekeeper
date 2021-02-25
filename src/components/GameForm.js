@@ -6,12 +6,12 @@ import styled from 'styled-components/macro'
 export default function GameForm({ onCreateGame }) {
   return (
     <GameFormElement onSubmit={handleSubmit}>
-      <InputField
+      <Input
         name="nameOfGame"
         labelText="Name of game"
         placeholder="e.g. Carcassonne"
       />
-      <InputField
+      <Input
         name="playerNames"
         labelText="Player names"
         placeholder="e.g. John Doe, Jane Doe"
@@ -38,4 +38,3 @@ const GameFormElement = styled.form`
   display: grid;
   gap: 10px;
 `
-const InputField = styled(Input)``

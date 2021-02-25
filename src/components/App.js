@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
 import Navigation from './Navigation'
-import Game from '../screens/Game'
-import History from '../screens/History'
-import CreateGame from '../screens/CreateGame'
+import Game from '../screens/GamePage'
+import History from '../screens/HistoryPage'
+import CreateGame from '../screens/CreatePage'
 import { v4 as uuidv4 } from 'uuid'
 
 function App() {
@@ -14,14 +14,14 @@ function App() {
 
   return (
     <Appgrid>
-      {currentPage === 'play' && <CreateGame createGame={createGame} />}
+      {currentPage === 'play' && <CreateGame onCreateGame={createGame} />}
 
       {currentPage === 'game' && (
         <Game
           players={players}
           nameOfGame={nameOfGame}
-          handlePlus={handlePlus}
-          handleMinus={handleMinus}
+          onPlus={handlePlus}
+          onMinus={handleMinus}
           resetScores={resetScores}
           endGame={endGame}
         />
