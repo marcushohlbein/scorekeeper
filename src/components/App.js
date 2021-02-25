@@ -1,51 +1,56 @@
 import { useState } from 'react'
 import styled from 'styled-components/macro'
-import Navigation from './Navigation'
-import Game from '../screens/GamePage'
-import History from '../screens/HistoryPage'
-import CreateGame from '../screens/CreatePage'
 import { v4 as uuidv4 } from 'uuid'
+import { Route, Switch, useHistory } from 'react-router-dom'
+
+import Navigation from './Navigation'
+import GamePage from '../screens/GamePage'
+import HistoryPage from '../screens/HistoryPage'
+import CreatePage from '../screens/CreatePage'
 
 function App() {
   const [players, setPlayers] = useState([])
   const [nameOfGame, setNameOfGame] = useState('')
   const [history, setHistory] = useState([])
-  const [currentPage, setCurrentPage] = useState('play')
+  const { push } = useHistory()
 
   return (
     <Appgrid>
-      {currentPage === 'play' && <CreateGame onCreateGame={createGame} />}
-
-      {currentPage === 'game' && (
-        <Game
-          players={players}
-          nameOfGame={nameOfGame}
-          onPlus={handlePlus}
-          onMinus={handleMinus}
-          resetScores={resetScores}
-          endGame={endGame}
-        />
-      )}
-
-      {currentPage === 'history' && <History history={history} />}
-
-      {(currentPage === 'play' || currentPage === 'history') && (
-        <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
-      )}
+      <Switch>
+        <Route exact path="/">
+          <CreatePage onCreateGame={createGame} />
+        </Route>
+        <Route path="/game">
+          <GamePage
+            players={players}
+            nameOfGame={nameOfGame}
+            onPlus={handlePlus}
+            onMinus={handleMinus}
+            resetScores={resetScores}
+            endGame={endGame}
+          />
+        </Route>
+        <Route path="/history">
+          <HistoryPage history={history} />
+        </Route>
+      </Switch>
+      <Route exact path={['/', '/history']}>
+        <Navigation />
+      </Route>
     </Appgrid>
   )
 
   function createGame({ nameOfGame, playerNames }) {
     setNameOfGame(nameOfGame)
     setPlayers(playerNames.map(name => ({ name, score: 0 })))
-    setCurrentPage('game')
+    push('/game')
   }
 
   function endGame() {
     setHistory([{ id: uuidv4(), players, nameOfGame }, ...history])
     setPlayers([])
     setNameOfGame([])
-    setCurrentPage('play')
+    push('/history')
   }
 
   function resetScores() {
