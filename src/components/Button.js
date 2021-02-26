@@ -5,4 +5,12 @@ export default styled.button`
   ${props => props.isActive && 'color: white;'}
   border: none;
   width: 100%;
+  padding: 8px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  &.active {
+    background-color: salmon;
+    color: white;
+  }
 `
