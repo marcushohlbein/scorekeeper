@@ -3,14 +3,14 @@ import styled from 'styled-components/macro'
 
 export default function Input({ labelText, placeholder, name }) {
   return (
-    <InputFieldElement>
+    <Label>
       {labelText}
       <InputField name={name} placeholder={placeholder} type="text" />
-    </InputFieldElement>
+    </Label>
   )
 }
 
-const InputFieldElement = styled.div`
+const Label = styled.label`
   display: grid;
   gap: 4px;
 `
